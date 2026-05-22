@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium MC - Personal Branding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['"Cinzel"', "serif"],
+              body: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            colors: {
+              brand: {
+                dark: "#09090b", // zinc-950
+                card: "#18181b", // zinc-900
+                gold: "#d4af37", // metallic gold
+                gold_muted: "#fef08a", // yellow-200
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #09090b;
+        color: #fafafa;
+      }
+
+      /* Glassmorphism utilities */
+      .glass {
+        background: rgba(24, 24, 27, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Scroll Reveal Animation Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.4s;
+      }
+
+      /* Floating Animation untuk Foto Hero */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #09090b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3f3f46;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d4af37;
+      }
+
+      /* Gradient Text */
+      .text-gradient {
+        background: linear-gradient(to right, #d4af37, #fef08a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body
+    class="font-body antialiased overflow-x-hidden selection:bg-brand-gold selection:text-brand-dark"
+  >
+    <nav class="fixed w-full z-50 top-0 px-4 py-4">
+      <div
+        class="max-w-7xl mx-auto glass rounded-full px-8 py-4 flex justify-between items-center shadow-2xl"
+      >
+        <div
+          class="font-display font-bold text-xl tracking-widest text-brand-gold"
+        >
+          NAMA MC.
+        </div>
+        <div
+          class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-zinc-300"
+        >
+          <a href="#about" class="hover:text-brand-gold transition-colors"
+            >Tentang Saya</a
+          >
+          <a href="#expertise" class="hover:text-brand-gold transition-colors"
+            >Layanan</a
+          >
+          <a href="#gallery" class="hover:text-brand-gold transition-colors"
+            >Galeri</a
+          >
+          <a href="#contact" class="hover:text-brand-gold transition-colors"
+            >Kontak</a
+          >
+        </div>
+        <a
+          href="#contact"
+          class="bg-brand-gold text-brand-dark px-6 py-2 rounded-full font-bold text-sm hover:bg-brand-gold_muted transition-all shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+        >
+          Booking
+        </a>
+      </div>
+    </nav>
+
+    <section
+      class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold/10 rounded-full blur-[100px]"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px]"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12"
+      >
+        <div class="text-center lg:text-left pt-10 lg:pt-0">
+          <div
+            class="inline-block border border-brand-gold/30 rounded-full px-6 py-2 mb-8 glass"
+          >
+            <span
+              class="text-brand-gold text-xs uppercase tracking-[0.3em] font-semibold"
+              >Premium Master of Ceremony</span
+            >
+          </div>
+          <h1
+            class="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.1] mb-6 reveal"
+          >
+            THE VOICE <br />
+            OF <span class="text-gradient">ELEGANCE</span>
+          </h1>
+          <p
+            class="font-body text-lg md:text-xl text-zinc-400 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed reveal reveal-delay-1"
+          >
+            Bukan sekadar berbicara, tapi mengendalikan atmosfer. Hadirkan
+            wibawa, ketenangan, dan kemewahan mutlak untuk panggung perhelatan
+            Anda.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start reveal reveal-delay-2"
+          >
+            <a
+              href="#about"
+              class="px-8 py-4 bg-white text-brand-dark rounded-full font-bold hover:bg-zinc-200 transition-colors text-center"
+              >Profil Saya</a
+            >
+            <a
+              href="#gallery"
+              class="px-8 py-4 border border-zinc-700 rounded-full font-bold hover:bg-zinc-800 transition-colors flex items-center justify-center gap-3"
+            >
+              <svg
+                class="w-5 h-5 text-brand-gold"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+              Lihat Aksi
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="relative flex justify-center lg:justify-end items-center h-[500px] md:h-[600px] lg:h-[750px] reveal"
+        >
+          <img
+            src="img/sendiri.png"
+            alt="MC Portrait"
+            class="w-auto h-full max-w-[90vw] object-contain drop-shadow-[0_20px_50px_rgba(212,175,55,0.15)] animate-float"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-12 border-y border-zinc-800/50 bg-brand-card/50 relative z-20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-zinc-800"
+      >
+        <div class="reveal">
+          <h3 class="font-display text-4xl md:text-5xl text-brand-gold mb-2">
+            <span class="counter" data-target="500">0</span>+
+          </h3>
+          <p
+            class="text-zinc-500 text-sm uppercase tracking-widest font-semibold"
+          >
+            Acara Sukses
+          </p>
+        </div>
+        <div class="reveal">
+          <h3 class="font-display text-4xl md:text-5xl text-brand-gold mb-2">
+            <span class="counter" data-target="10">0</span>
+          </h3>
+          <p
+            class="text-zinc-500 text-sm uppercase tracking-widest font-semibold"
+          >
+            Tahun Pengalaman
+          </p>
+        </div>
+        <div class="reveal">
+          <h3 class="font-display text-4xl md:text-5xl text-brand-gold mb-2">
+            <span class="counter" data-target="30">0</span>+
+          </h3>
+          <p
+            class="text-zinc-500 text-sm uppercase tracking-widest font-semibold"
+          >
+            Kota Dijangkau
+          </p>
+        </div>
+        <div class="reveal">
+          <h3 class="font-display text-4xl md:text-5xl text-brand-gold mb-2">
+            <span class="counter" data-target="100">0</span>%
+          </h3>
+          <p
+            class="text-zinc-500 text-sm uppercase tracking-widest font-semibold"
+          >
+            Kepuasan Klien
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
+      <div
+        class="glass p-12 md:p-20 rounded-[3rem] relative overflow-hidden reveal"
+      >
+        <h1
+          class="absolute -right-10 -bottom-10 font-display text-[15rem] font-black text-white/5 pointer-events-none select-none"
+        >
+          MC
+        </h1>
+
+        <div class="grid lg:grid-cols-2 gap-16 relative z-10 items-center">
+          <div>
+            <p
+              class="text-brand-gold text-sm tracking-widest uppercase font-bold mb-4"
+            >
+              Mengenal Lebih Dekat
+            </p>
+            <h2
+              class="font-display text-4xl md:text-5xl font-bold mb-8 leading-tight"
+            >
+              Karisma Sejati Tidak Selalu <br />
+              <span class="text-gradient">Mendominasi Percakapan.</span>
+            </h2>
+            <div
+              class="space-y-6 text-zinc-300 font-light leading-relaxed text-lg"
+            >
+              <p>
+                Halo, saya Nama MC. Saya percaya bahwa seorang Master of
+                Ceremony bukan sekadar pembicara, melainkan kurator pengalaman.
+                Tugas saya adalah tahu kapan harus menekan nada, kapan harus
+                memberi ruang bagi keheningan, dan bagaimana memastikan setiap
+                tamu merasa dihargai.
+              </p>
+              <p>
+                Spesialisasi saya berada pada pernikahan eksklusif (*Luxury
+                Wedding*) dan acara korporat berskala nasional. Saya memadukan
+                artikulasi bahasa yang sempurna dengan improvisasi cerdas untuk
+                menghidupkan panggung Anda.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div
+              class="bg-brand-dark/50 p-8 rounded-3xl border border-zinc-800 text-center"
+            >
+              <span class="block text-brand-gold text-3xl mb-4">♔</span>
+              <h4 class="font-display font-bold text-xl mb-2">Elegant</h4>
+              <p class="text-xs text-zinc-500">
+                Tutur kata tertata dan berwibawa.
+              </p>
+            </div>
+            <div
+              class="bg-brand-dark/50 p-8 rounded-3xl border border-zinc-800 text-center translate-y-8"
+            >
+              <span class="block text-brand-gold text-3xl mb-4">♕</span>
+              <h4 class="font-display font-bold text-xl mb-2">Adaptable</h4>
+              <p class="text-xs text-zinc-500">
+                Peka terhadap perubahan situasi panggung.
+              </p>
+            </div>
+            <div
+              class="bg-brand-dark/50 p-8 rounded-3xl border border-zinc-800 text-center"
+            >
+              <span class="block text-brand-gold text-3xl mb-4">♗</span>
+              <h4 class="font-display font-bold text-xl mb-2">Engaging</h4>
+              <p class="text-xs text-zinc-500">
+                Koneksi kuat dengan semua audiens.
+              </p>
+            </div>
+            <div
+              class="bg-brand-dark/50 p-8 rounded-3xl border border-zinc-800 text-center translate-y-8"
+            >
+              <span class="block text-brand-gold text-3xl mb-4">♖</span>
+              <h4 class="font-display font-bold text-xl mb-2">Bilingual</h4>
+              <p class="text-xs text-zinc-500">Fasih memandu dalam ID & EN.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="expertise"
+      class="py-20 px-6 max-w-7xl mx-auto border-t border-zinc-800/50 pt-32"
+    >
+      <div class="text-center mb-20 reveal">
+        <h2 class="font-display text-4xl md:text-6xl font-bold mb-6">
+          Area <span class="text-gradient">Keahlian</span>
+        </h2>
+        <p class="text-zinc-400 max-w-2xl mx-auto">
+          Layanan spesifik yang dirancang dengan standar eksekusi tingkat tinggi
+          untuk momen tak ternilai Anda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div
+          class="md:col-span-2 glass rounded-3xl p-10 relative overflow-hidden group reveal"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent z-10"
+          ></div>
+          <img
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Corporate"
+            class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700"
+          />
+          <div class="relative z-20 flex flex-col justify-end h-full">
+            <span class="text-brand-gold text-sm font-bold tracking-widest mb-2"
+              >01. CORPORATE</span
+            >
+            <h3 class="font-display text-3xl md:text-4xl font-bold mb-4">
+              Gala & Conferences
+            </h3>
+            <p class="text-zinc-300 max-w-md">
+              Kharisma profesional untuk memandu rapat paripurna, peluncuran
+              produk korporat, hingga penghargaan tingkat nasional.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="glass rounded-3xl p-10 relative overflow-hidden group reveal reveal-delay-1"
+        >
+          <div
+            class="absolute inset-0 bg-zinc-900/80 group-hover:bg-zinc-800/80 transition-colors z-10"
+          ></div>
+          <div class="relative z-20 flex flex-col justify-between h-full">
+            <div
+              class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <span
+                class="text-brand-gold text-sm font-bold tracking-widest mb-2 block"
+                >02. BRAND</span
+              >
+              <h3 class="font-display text-2xl font-bold mb-2">Activations</h3>
+              <p class="text-zinc-400 text-sm">
+                Menghidupkan antusiasme audiens untuk kampanye produk Anda.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="glass rounded-3xl p-10 relative overflow-hidden group reveal"
+        >
+          <div
+            class="absolute inset-0 bg-zinc-900/80 group-hover:bg-zinc-800/80 transition-colors z-10"
+          ></div>
+          <div class="relative z-20 flex flex-col justify-between h-full">
+            <div
+              class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <span
+                class="text-brand-gold text-sm font-bold tracking-widest mb-2 block"
+                >03. PRIVATE</span
+              >
+              <h3 class="font-display text-2xl font-bold mb-2">
+                Luxury Weddings
+              </h3>
+              <p class="text-zinc-400 text-sm">
+                Mengawal hari sakral dengan kehangatan dan keanggunan eksklusif.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="md:col-span-2 glass rounded-3xl p-10 relative overflow-hidden group reveal reveal-delay-1"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-l from-brand-dark via-brand-dark/80 to-transparent z-10"
+          ></div>
+          <img
+            src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Entertainment"
+            class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700"
+          />
+          <div
+            class="relative z-20 flex flex-col justify-end h-full items-end text-right"
+          >
+            <span class="text-brand-gold text-sm font-bold tracking-widest mb-2"
+              >04. ENTERTAINMENT</span
+            >
+            <h3 class="font-display text-3xl md:text-4xl font-bold mb-4">
+              Red Carpet & Awards
+            </h3>
+            <p class="text-zinc-300 max-w-md">
+              Interaksi dinamis dan cerdas untuk malam penghargaan berskala
+              besar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="py-32 bg-brand-card">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-16 reveal"
+        >
+          <div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">
+              Jejak <span class="text-gradient">Visual</span>
+            </h2>
+            <p class="text-zinc-400">
+              Panggung prestisius yang pernah saya hidupkan.
+            </p>
+          </div>
+          <a
+            href="https://instagram.com"
+            class="mt-6 md:mt-0 text-brand-gold font-bold uppercase tracking-widest text-sm hover:text-white transition-colors"
+          >
+            Lihat Instagram Saya &rarr;
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+          <div
+            class="col-span-2 row-span-2 rounded-2xl overflow-hidden group reveal"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Gal 1"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden group reveal reveal-delay-1">
+            <img
+              src="https://images.unsplash.com/photo-1478147427282-58a87a120781?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Gal 2"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale hover:grayscale-0"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden group reveal reveal-delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1505236858219-8359eb29e325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Gal 3"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+          <div
+            class="col-span-2 rounded-2xl overflow-hidden group relative reveal reveal-delay-1"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Gal 4"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              <div
+                class="w-16 h-16 rounded-full bg-brand-gold/90 flex items-center justify-center text-brand-dark"
+              >
+                <svg
+                  class="w-8 h-8 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="relative py-40 px-6 overflow-hidden">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[120px] pointer-events-none"
+      ></div>
+
+      <div
+        class="relative z-10 max-w-5xl mx-auto glass p-12 md:p-20 rounded-[3rem] border border-brand-gold/20 reveal"
+      >
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div class="text-center md:text-left">
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-6">
+              Mari Ciptakan <br />
+              <span class="text-gradient">Mahakarya.</span>
+            </h2>
+            <p class="text-zinc-400 text-lg mb-8 leading-relaxed">
+              Jadwal prioritas untuk kuartal mendatang mulai penuh. Hubungi
+              manajemen saya untuk berdiskusi tentang visi acara Anda dan
+              mengecek ketersediaan tanggal.
+            </p>
+            <a
+              href="https://wa.me/6281234567890"
+              class="inline-flex items-center gap-3 bg-brand-gold text-brand-dark font-bold px-10 py-4 rounded-full hover:bg-brand-gold_muted transition-colors shadow-lg shadow-brand-gold/20 text-lg"
+            >
+              Hubungi via WhatsApp &rarr;
+            </a>
+          </div>
+
+          <div class="space-y-8 pl-0 md:pl-12 md:border-l border-zinc-800">
+            <div>
+              <p
+                class="text-brand-gold text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Manajemen Representatif
+              </p>
+              <p class="font-display text-2xl">hello@mcnama.com</p>
+              <p class="font-display text-xl text-zinc-400">
+                +62 812 3456 7890
+              </p>
+            </div>
+            <div>
+              <p
+                class="text-brand-gold text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Media Sosial
+              </p>
+              <div class="flex gap-6">
+                <a
+                  href="#"
+                  class="font-display text-xl hover:text-brand-gold transition-colors"
+                  >Instagram</a
+                >
+                <a
+                  href="#"
+                  class="font-display text-xl hover:text-brand-gold transition-colors"
+                  >TikTok</a
+                >
+                <a
+                  href="#"
+                  class="font-display text-xl hover:text-brand-gold transition-colors"
+                  >YouTube</a
+                >
+              </div>
+            </div>
+            <div>
+              <p
+                class="text-brand-gold text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Basis Lokasi
+              </p>
+              <p class="font-display text-xl">Jakarta Selatan, IDN</p>
+              <p class="text-sm text-zinc-500 mt-1">
+                *(Bersedia melayani ke seluruh Indonesia & Luar Negeri)*
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="py-8 text-center text-zinc-600 text-xs tracking-widest uppercase border-t border-zinc-900"
+    >
+      <p>&copy; 2026 NAMA MC. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Animasi Scroll Reveal (Fade Up)
+        const reveals = document.querySelectorAll(".reveal");
+        const revealOnScroll = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+        );
+        reveals.forEach((reveal) => revealOnScroll.observe(reveal));
+
+        // 2. Animasi Angka Counter
+        const counters = document.querySelectorAll(".counter");
+        const counterObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = +entry.target.getAttribute("data-target");
+                let count = 0;
+
+                const updateCount = () => {
+                  const inc = target / 30; // Kecepatan (semakin kecil pembagi = makin cepat)
+                  if (count < target) {
+                    count += inc;
+                    entry.target.innerText = Math.ceil(count);
+                    setTimeout(updateCount, 40);
+                  } else {
+                    entry.target.innerText = target;
+                  }
+                };
+
+                updateCount();
+                observer.unobserve(entry.target); // Hanya animasi 1x
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+        counters.forEach((counter) => counterObserver.observe(counter));
+      });
+    </script>
+  </body>
+</html>
