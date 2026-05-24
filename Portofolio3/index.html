@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE VOICE - Premium Editorial Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['"Playfair Display"', "serif"],
+              body: ['"Montserrat"', "sans-serif"],
+            },
+            colors: {
+              "crimson-dark": "#150202",
+              "crimson-base": "#380606",
+              "crimson-light": "#8B1414",
+              cream: "#FDF5E6",
+              gold: "#D4AF37",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #150202;
+        color: #fdf5e6;
+      }
+
+      /* Glassmorphism & Blurs */
+      .glass {
+        background: rgba(56, 6, 6, 0.3);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(253, 245, 230, 0.05);
+      }
+
+      /* Typography Utilities */
+      .text-outline {
+        color: transparent;
+        -webkit-text-stroke: 1.5px #fdf5e6;
+      }
+      .text-outline-gold {
+        color: transparent;
+        -webkit-text-stroke: 1px #d4af37;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #150202;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #380606;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #8b1414;
+      }
+
+      /* Marquee Animation */
+      .marquee {
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        width: 100%;
+      }
+      .marquee-content {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-around;
+        min-width: 100%;
+        animation: scroll 20s linear infinite;
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* Scroll Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* FAQ Accordion */
+      details > summary {
+        list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* =========================================
+         INTERACTIVE PRICING CARD CSS 
+         (Untuk efek hover pindah kotak merah)
+         ========================================= */
+      .pricing-card {
+        transition: all 0.4s ease-out;
+        cursor: pointer;
+      }
+      /* Kondisi Saat Tidak Aktif (Biasa/Glass) */
+      .pricing-card:not(.is-active) {
+        background: rgba(56, 6, 6, 0.3);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(253, 245, 230, 0.3);
+      }
+      .pricing-card:not(.is-active):hover {
+        transform: translateY(-8px);
+      }
+      /* Kondisi Saat Aktif (Menjadi Merah) */
+      .pricing-card.is-active {
+        background: linear-gradient(to bottom, #8b1414, #380606);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+      /* Responsive translateY untuk kotak aktif */
+      @media (min-width: 768px) {
+        .pricing-card.is-active {
+          transform: translateY(-16px);
+        }
+      }
+
+      /* Perubahan Warna Tombol & Subtitle di dalam Kotak */
+      .pricing-card .btn-choose {
+        border: 1px solid rgba(253, 245, 230, 0.3);
+        background: transparent;
+        color: #fdf5e6;
+      }
+      .pricing-card:not(.is-active) .btn-choose:hover {
+        background: #fdf5e6;
+        color: #150202;
+      }
+      .pricing-card.is-active .btn-choose {
+        background: #d4af37;
+        color: #150202;
+        border-color: transparent;
+        font-weight: bold;
+      }
+      .pricing-card.is-active .btn-choose:hover {
+        background: #fdf5e6;
+      }
+
+      .pricing-card .card-subtitle {
+        color: #d4af37;
+      }
+      .pricing-card.is-active .card-subtitle {
+        color: rgba(253, 245, 230, 0.7);
+      }
+    </style>
+  </head>
+  <body
+    class="font-body antialiased overflow-x-hidden selection:bg-crimson-light selection:text-cream"
+  >
+    <nav class="fixed w-full top-0 z-50 glass border-b border-cream/5">
+      <div
+        class="max-w-[1400px] mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="#"
+          class="font-display font-bold text-2xl tracking-widest text-cream hover:text-gold transition-colors"
+          >THE COMPERE.</a
+        >
+        <div
+          class="hidden md:flex gap-8 text-[10px] font-bold tracking-[0.2em] uppercase text-cream/70"
+        >
+          <a href="#about" class="hover:text-gold transition">Profile</a>
+          <a href="#services" class="hover:text-gold transition">Packages</a>
+          <a href="#gallery" class="hover:text-gold transition">Gallery</a>
+          <a href="#faq" class="hover:text-gold transition">FAQ</a>
+          <a href="#contact" class="hover:text-gold transition">Contact</a>
+        </div>
+        <a
+          href="#contact"
+          class="bg-cream text-crimson-dark px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-gold transition-colors rounded"
+          >Book</a
+        >
+      </div>
+    </nav>
+
+    <section
+      class="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-crimson-base to-crimson-dark pt-20"
+    >
+      <div
+        class="absolute top-[15%] w-full text-center z-0 pointer-events-none select-none reveal"
+      >
+        <h1
+          class="font-display text-[22vw] leading-none font-black text-crimson-base/60 tracking-tighter mix-blend-color-dodge"
+        >
+          Port<span class="italic font-normal">folio</span>
+        </h1>
+      </div>
+
+      <div
+        class="relative z-10 w-full max-w-[1400px] mx-auto h-[75vh] flex flex-col md:flex-row items-center justify-center md:justify-start px-6 md:px-12"
+      >
+        <div
+          class="relative w-[450px] h-[550px] md:w-[550px] md:h-[700px] z-20 flex-shrink-0 md:ml-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+        >
+          <img
+            src="img/sendiri.png"
+            alt="MC Cutout"
+            class="w-full h-full object-contain filter contrast-125 brightness-90"
+          />
+        </div>
+
+        <div
+          class="absolute bottom-[5%] md:bottom-[15%] left-6 md:left-20 z-30 pointer-events-none reveal"
+          style="transition-delay: 0.2s"
+        >
+          <h2
+            class="font-body font-black text-[12vw] md:text-6xl text-cream leading-[0.85] tracking-tighter drop-shadow-2xl"
+          >
+            MAS<br />TER<br />OF<br />CERE<br />MONY
+          </h2>
+        </div>
+
+        <div
+          class="absolute top-[50%] md:top-[35%] right-6 md:right-12 z-30 text-right pointer-events-none reveal"
+          style="transition-delay: 0.4s"
+        >
+          <p
+            class="font-display italic text-sm md:text-xl tracking-[0.3em] text-gold mb-2 mr-2"
+          >
+            LUXURY EVENTS
+          </p>
+          <h1
+            class="font-body font-black text-[15vw] md:text-[9vw] text-cream leading-[0.75] tracking-tighter drop-shadow-2xl"
+          >
+            THE<br /><span class="text-outline">VOICE</span>
+          </h1>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-6 w-full max-w-[1400px] mx-auto px-6 md:px-12 flex justify-between items-end border-b border-cream/10 pb-4 z-40 text-[9px] md:text-xs font-bold tracking-[0.2em] uppercase reveal"
+        style="transition-delay: 0.6s"
+      >
+        <div class="flex items-center gap-2 text-gold">
+          <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+          OPEN FOR 2026 BOOKINGS
+        </div>
+        <div class="flex gap-6 opacity-70">
+          <p>JKT, IDN</p>
+          <p>ENG & IND</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="py-5 bg-crimson-base border-b border-cream/5 marquee reveal">
+      <div
+        class="marquee-content font-display italic text-2xl tracking-widest text-cream/70"
+      >
+        &nbsp;✦&nbsp; EXCLUSIVE WEDDINGS &nbsp;✦&nbsp; CORPORATE GALAS
+        &nbsp;✦&nbsp; BRAND ACTIVATIONS &nbsp;✦&nbsp; RED CARPETS
+      </div>
+      <div
+        class="marquee-content font-display italic text-2xl tracking-widest text-cream/70"
+      >
+        &nbsp;✦&nbsp; EXCLUSIVE WEDDINGS &nbsp;✦&nbsp; CORPORATE GALAS
+        &nbsp;✦&nbsp; BRAND ACTIVATIONS &nbsp;✦&nbsp; RED CARPETS
+      </div>
+    </div>
+
+    <section id="about" class="py-32 px-6 max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-7 glass p-10 md:p-16 rounded-[2.5rem] reveal">
+          <p
+            class="text-gold text-[10px] tracking-[0.3em] uppercase font-bold mb-4"
+          >
+            Tentang Kita
+          </p>
+          <h2
+            class="font-display text-4xl md:text-6xl mb-8 font-bold leading-tight"
+          >
+            Mendefinisikan Ulang <br /><span class="italic text-gold"
+              >Standar Panggung.</span
+            >
+          </h2>
+          <p
+            class="font-light text-sm md:text-base leading-relaxed opacity-80 mb-8"
+          >
+            Dengan jam terbang memandu ratusan klien premium, saya memahami
+            bahwa suara adalah elemen terkuat untuk mengendalikan emosi ruangan.
+            Saya tidak hanya membacakan skrip; saya mengkurasi momen, memastikan
+            setiap transisi acara Anda berjalan elegan, presisi, dan tak
+            terlupakan.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="border border-cream/20 px-4 py-1 rounded-full text-xs tracking-widest uppercase"
+              >Formal</span
+            >
+            <span
+              class="border border-cream/20 px-4 py-1 rounded-full text-xs tracking-widest uppercase"
+              >Intimate</span
+            >
+            <span
+              class="border border-cream/20 px-4 py-1 rounded-full text-xs tracking-widest uppercase"
+              >Witty</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="lg:col-span-5 grid grid-cols-1 gap-6 reveal"
+          style="transition-delay: 0.2s"
+        >
+          <div
+            class="bg-gradient-to-br from-crimson-light to-crimson-base p-8 rounded-3xl border border-cream/10 flex justify-between items-center"
+          >
+            <div>
+              <p class="font-display text-5xl font-bold">
+                <span class="counter" data-target="500">0</span>+
+              </p>
+              <p class="text-[10px] tracking-widest uppercase mt-2 opacity-80">
+                Acara Sukses
+              </p>
+            </div>
+            <svg
+              class="w-12 h-12 opacity-50"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1"
+                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <div
+            class="glass p-8 rounded-3xl border border-cream/5 flex justify-between items-center"
+          >
+            <div>
+              <p class="font-display text-5xl font-bold text-gold">
+                <span class="counter" data-target="10">0</span>
+              </p>
+              <p class="text-[10px] tracking-widest uppercase mt-2 opacity-80">
+                Tahun Pengalaman
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="services"
+      class="py-24 bg-crimson-base/30 border-y border-cream/5"
+    >
+      <div class="max-w-[1400px] mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <p
+            class="text-gold text-[10px] tracking-[0.3em] uppercase font-bold mb-4"
+          >
+            Investasi
+          </p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold">
+            Layanan <span class="italic text-outline">Eksklusif</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="pricing-card p-10 rounded-[2rem] reveal">
+            <h3 class="font-display text-3xl mb-2">Intimate</h3>
+            <p class="card-subtitle text-xs uppercase tracking-widest mb-8">
+              Holy Matrimony / Akad
+            </p>
+            <ul class="text-sm space-y-4 opacity-80 mb-10 font-light">
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Durasi hingga 3 Jam
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> 1x Technical Meeting
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Penyusunan Skrip Personal
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="btn-choose block text-center py-3 text-xs uppercase tracking-widest transition"
+              >Pilih Paket</a
+            >
+          </div>
+
+          <div
+            class="pricing-card is-active p-10 rounded-[2rem] reveal"
+            style="transition-delay: 0.2s"
+          >
+            <h3 class="font-display text-3xl mb-2">Signature</h3>
+            <p class="card-subtitle text-xs uppercase tracking-widest mb-8">
+              Akad + Grand Resepsi
+            </p>
+            <ul class="text-sm space-y-4 opacity-90 mb-10 font-medium">
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Full Day Service
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Unlimited Consultation
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Gladi Bersih H-1
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Koordinasi Full Vendor
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="btn-choose block text-center py-3 text-xs uppercase tracking-widest transition"
+              >Rekomendasi</a
+            >
+          </div>
+
+          <div
+            class="pricing-card p-10 rounded-[2rem] reveal"
+            style="transition-delay: 0.4s"
+          >
+            <h3 class="font-display text-3xl mb-2">Corporate</h3>
+            <p class="card-subtitle text-xs uppercase tracking-widest mb-8">
+              Gala / Brand Activation
+            </p>
+            <ul class="text-sm space-y-4 opacity-80 mb-10 font-light">
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Profesional Tone
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Bilingual (ID/EN)
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gold">✦</span> Crowd Control Ekstra
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="btn-choose block text-center py-3 text-xs uppercase tracking-widest transition"
+              >Pilih Paket</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="py-32 px-6 max-w-[1400px] mx-auto">
+      <h2 class="font-display text-5xl font-bold mb-12 text-center reveal">
+        Jejak <span class="italic text-gold">Panggung.</span>
+      </h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div
+          class="col-span-2 row-span-2 rounded-[2rem] overflow-hidden group relative reveal"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+          />
+          <div
+            class="absolute inset-0 bg-crimson-dark/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+          >
+            <span class="font-display text-2xl italic">Grand Ballroom</span>
+          </div>
+        </div>
+        <div
+          class="rounded-[2rem] overflow-hidden group reveal"
+          style="transition-delay: 0.1s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0"
+          />
+        </div>
+        <div
+          class="rounded-[2rem] overflow-hidden group reveal"
+          style="transition-delay: 0.2s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+          />
+        </div>
+        <div
+          class="col-span-2 rounded-[2rem] overflow-hidden group reveal"
+          style="transition-delay: 0.3s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-crimson-base/20 border-y border-cream/5">
+      <div class="max-w-4xl mx-auto px-6 reveal">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl font-bold mb-4">Pertanyaan Umum</h2>
+          <p class="font-light opacity-70">
+            Yang sering ditanyakan klien sebelum berkolaborasi.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <details
+            class="glass rounded-2xl group reveal"
+            style="transition-delay: 0.1s"
+          >
+            <summary
+              class="flex justify-between items-center font-bold cursor-pointer p-6 list-none"
+            >
+              <span>Sejauh apa MC terlibat dalam persiapan acara?</span>
+              <span class="transition group-open:rotate-45 text-gold text-2xl"
+                >+</span
+              >
+            </summary>
+            <div
+              class="p-6 pt-0 text-sm font-light opacity-80 leading-relaxed border-t border-cream/10 mt-2"
+            >
+              Saya akan terlibat sejak finalisasi *rundown* (biasanya H-30).
+              Termasuk menghadiri *Technical Meeting* dan memimpin Gladi Bersih
+              pada H-1 agar semua elemen acara terorkestrasi dengan baik.
+            </div>
+          </details>
+
+          <details
+            class="glass rounded-2xl group reveal"
+            style="transition-delay: 0.2s"
+          >
+            <summary
+              class="flex justify-between items-center font-bold cursor-pointer p-6 list-none"
+            >
+              <span>Apakah menerima tawaran acara di luar Jakarta?</span>
+              <span class="transition group-open:rotate-45 text-gold text-2xl"
+                >+</span
+              >
+            </summary>
+            <div
+              class="p-6 pt-0 text-sm font-light opacity-80 leading-relaxed border-t border-cream/10 mt-2"
+            >
+              Tentu. Saya melayani klien di seluruh Indonesia dan Asia Tenggara.
+              Biaya akomodasi dan transportasi akan disesuaikan secara
+              transparan dalam penawaran.
+            </div>
+          </details>
+
+          <details
+            class="glass rounded-2xl group reveal"
+            style="transition-delay: 0.3s"
+          >
+            <summary
+              class="flex justify-between items-center font-bold cursor-pointer p-6 list-none"
+            >
+              <span>Bagaimana cara mengamankan jadwal (Booking)?</span>
+              <span class="transition group-open:rotate-45 text-gold text-2xl"
+                >+</span
+              >
+            </summary>
+            <div
+              class="p-6 pt-0 text-sm font-light opacity-80 leading-relaxed border-t border-cream/10 mt-2"
+            >
+              Tanggal acara Anda dinyatakan aman setelah penandatanganan MoU dan
+              pembayaran *Down Payment* (DP) sebesar 50%.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contact"
+      class="py-32 px-6 max-w-[1400px] mx-auto border-b border-cream/5"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-7 glass p-10 md:p-16 rounded-[2.5rem] reveal">
+          <p
+            class="text-gold text-[10px] tracking-[0.3em] uppercase font-bold mb-4"
+          >
+            Kontak Kami
+          </p>
+          <h2
+            class="font-display text-4xl md:text-6xl mb-8 font-bold leading-tight"
+          >
+            Mari <br /><span class="italic text-gold">Berdiskusi.</span>
+          </h2>
+          <p
+            class="font-light text-sm md:text-base leading-relaxed opacity-80 mb-8"
+          >
+            Setiap acara memiliki ceritanya sendiri. Hubungi saya untuk
+            memastikan visi acara Anda tersampaikan dengan sempurna. Saya siap
+            menjawab pertanyaan Anda terkait ketersediaan jadwal, detail paket,
+            dan penyesuaian layanan khusus untuk Anda.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="border border-cream/20 px-4 py-1 rounded-full text-xs tracking-widest uppercase"
+              >WhatsApp Direct</span
+            >
+            <span
+              class="border border-cream/20 px-4 py-1 rounded-full text-xs tracking-widest uppercase"
+              >Email Inquiry</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="lg:col-span-5 grid grid-cols-1 gap-6 reveal"
+          style="transition-delay: 0.2s"
+        >
+          <div
+            class="bg-gradient-to-br from-crimson-light to-crimson-base p-10 rounded-3xl border border-cream/10 flex flex-col justify-center"
+          >
+            <p class="text-[10px] tracking-widest uppercase opacity-80 mb-2">
+              Kontak Langsung
+            </p>
+            <p class="font-display text-3xl font-bold">+62 812 3456 7890</p>
+            <p class="font-display text-2xl font-bold mt-2 text-gold">
+              hello@mcnama.com
+            </p>
+          </div>
+          <div
+            class="glass p-10 rounded-3xl border border-cream/5 flex flex-col justify-center"
+          >
+            <p class="text-[10px] tracking-widest uppercase opacity-80 mb-2">
+              Lokasi Manajemen
+            </p>
+            <p class="font-display text-3xl font-bold">Jakarta Selatan,</p>
+            <p class="font-display text-xl font-bold opacity-80">Indonesia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-12 px-6 max-w-[1400px] mx-auto">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center text-[10px] font-bold tracking-widest uppercase opacity-50 reveal"
+      >
+        <p>&copy; 2026 THE COMPERE. ALL RIGHTS RESERVED.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-cream transition">IG</a>
+          <a href="#" class="hover:text-cream transition">TK</a>
+          <a href="#" class="hover:text-cream transition">YT</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Animasi Scroll Reveal (Fade-up)
+        const reveals = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+        );
+        reveals.forEach((reveal) => revealObserver.observe(reveal));
+
+        // 2. Animasi Angka Berjalan (Counter)
+        const counters = document.querySelectorAll(".counter");
+        const counterObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = +entry.target.getAttribute("data-target");
+                let count = 0;
+
+                const updateCount = () => {
+                  // Kecepatan putaran (semakin kecil pembagi, semakin cepat)
+                  const inc = target / 40;
+                  if (count < target) {
+                    count += inc;
+                    entry.target.innerText = Math.ceil(count);
+                    setTimeout(updateCount, 30);
+                  } else {
+                    entry.target.innerText = target;
+                  }
+                };
+
+                updateCount();
+                observer.unobserve(entry.target); // Hanya animasi 1x saat di-scroll
+              }
+            });
+          },
+          { threshold: 0.5 }, // Animasi mulai saat elemen 50% terlihat di layar
+        );
+        counters.forEach((counter) => counterObserver.observe(counter));
+
+        // 3. Grid Layanan Interaktif (Hover pindah kotak merah)
+        const pricingCards = document.querySelectorAll(".pricing-card");
+        pricingCards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            // Hapus class 'is-active' dari semua card
+            pricingCards.forEach((c) => c.classList.remove("is-active"));
+            // Tambahkan class 'is-active' ke card yang sedang disentuh mouse
+            card.classList.add("is-active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
